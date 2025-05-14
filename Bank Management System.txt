@@ -1,0 +1,192 @@
+step Bank Management System – ER Diagram
+_______________________________________________
+ 
+
+Customer: CustomerID (PK),Name,Email,Phone,Address,JoinDate
+
+Transaction:TransactionID (PK),AccountID (FK),Type,Amount,Date
+
+Employee: EmployeeID (PK),Name,Email,Phone,Rote
+
+Branch: BranchID (PK),Name,Location,Phone
+___________________________________________________________________
+
+
+technical Report – Bank Database Project
+1. Project Introduction
+Project Title: Bank Management System
+
+Project Idea:
+This project is about building a database for a bank. The system stores and manages customer data, bank accounts, financial transactions, and employee information. It helps track balances, deposits, withdrawals, and shows who did each transaction.
+
+2. Entities and Users Analysis
+Users of the System:
+
+Employee: Can manage accounts and transactions.
+
+Admin: Has full control over the system.
+
+Main Entities:
+
+Customer – Stores personal data of each client.
+
+Account – Stores account number, type, balance, and links to a customer.
+
+Transaction – Stores deposit, withdraw, and transfer data.
+
+Employee – Stores staff data who handles transactions.
+
+3. ER Diagram and Mapping
+The ER diagram was created using draw.io. It shows:
+
+One customer can have many accounts.
+
+One account can have many transactions.
+
+One transaction is handled by one employee.
+
+Mapping Example:
+
+Entity	Table Name
+Customer	customers
+Account	accounts
+Transaction	transactions
+Employee	employees
+
+4. Normalization
+The database was normalized to Third Normal Form (3NF):
+
+1NF: Each column has atomic (single) values.
+
+2NF: All non-key columns depend only on the primary key.
+
+3NF: No indirect dependency between columns.
+
+Example:
+In the accounts table, all columns like account_type, balance depend only on account_id, and the customer_id is a foreign key.
+
+5. SQL Code and Table Creation
+Using the file bank_project.sql, the following tables were created:
+
+customers
+
+accounts
+
+transactions
+
+employees
+
+Primary keys and foreign keys were added. Permissions for users were also set.
+
+6. Sample Data
+At least 10 records were inserted into each table. This helps test the database and see how the queries work.
+
+7. Main SQL Queries
+Here are 5 important SQL queries used:
+
+Search by text (LIKE):
+
+sql
+Copy
+Edit
+SELECT * FROM customers WHERE name LIKE '%Ahmed%';
+Aggregate function (SUM):
+
+sql
+Copy
+Edit
+SELECT account_id, SUM(amount) FROM transactions GROUP BY account_id;
+Order by (ascending):
+
+sql
+Copy
+Edit
+SELECT * FROM accounts ORDER BY balance ASC;
+Join between tables:
+
+sql
+Copy
+Edit
+SELECT t.id, c.name, a.account_number, t.amount  
+FROM transactions t  
+JOIN accounts a ON t.account_id = a.id  
+JOIN customers c ON a.customer_id = c.id;
+Condition (WHERE):
+
+sql
+Copy
+Edit
+SELECT * FROM transactions WHERE amount > 1000;
+8. Conclusion
+This bank database project includes everything from idea to ERD, normalization, table creation, data insertion, and writing useful queries. It meets all course requirements for the database project.
+
+_______________________________________________________________________________________________________________________________________
+* run cmd
+------------+------------+-------------------+-------------+---------+------------+
+| CustomerID | Name       | Email             | Phone       | Address | JoinDate   |
++------------+------------+-------------------+-------------+---------+------------+
+|          1 | Ali Hassan | ali@example.com   | 01012345678 | Cairo   | 2023-01-01 |
+|         10 | Hanan Ali  | hanan@example.com | 01277889900 | Cairo   | 2023-10-05 |
++------------+------------+-------------------+-------------+---------+------------+
+2 rows in set (0.022 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
++------------+-------------+
+| Type       | TotalAmount |
++------------+-------------+
+| Deposit    |     8400.00 |
+| Withdrawal |     3800.00 |
++------------+-------------+
+2 rows in set (0.009 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
++-----------+------------+----------+----------+------------+
+| AccountID | CustomerID | BranchID | Balance  | OpenDate   |
++-----------+------------+----------+----------+------------+
+|         8 |          8 |        8 | 15000.00 | 2023-08-16 |
+|         7 |          7 |        7 | 11000.00 | 2023-07-08 |
+|         2 |          2 |        2 | 10000.00 | 2023-02-20 |
+|         6 |          6 |        6 |  9200.00 | 2023-06-05 |
+|         5 |          5 |        5 |  8500.00 | 2023-05-10 |
+|         3 |          3 |        3 |  7500.00 | 2023-03-25 |
+|        10 |         10 |       10 |  6400.00 | 2023-10-01 |
+|         1 |          1 |        1 |  5000.00 | 2023-01-01 |
+|         4 |          4 |        4 |  3000.00 | 2023-04-15 |
+|         9 |          9 |        9 |  2000.00 | 2023-09-09 |
++-----------+------------+----------+----------+------------+
+10 rows in set (0.002 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
++---------------+-----------+------------+--------+------------+
+| TransactionID | AccountID | Type       | Amount | Date       |
++---------------+-----------+------------+--------+------------+
+|             2 |         2 | Withdrawal | 500.00 | 2023-02-21 |
++---------------+-----------+------------+--------+------------+
+1 row in set (0.010 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
++--------------------+---------------+
+| Name               | TotalAccounts |
++--------------------+---------------+
+| Alex Branch        |             1 |
+| Delta Branch       |             1 |
+| Giza Branch        |             1 |
+| Main Branch        |             1 |
+| Port Said Branch   |             1 |
+| South Branch       |             1 |
+| Suez Branch        |             1 |
+| Tanta Branch       |             1 |
+| Upper Egypt Branch |             1 |
+| Zagazig Branch     |             1 |
++--------------------+---------------+
+10 rows in set (0.005 sec)
+
+mysql>
+
+
+
+
