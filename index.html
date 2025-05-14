@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>User List</h1>
+  <button onclick="location.href='add.html'">Add User</button>
+  <table id="usersTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <form id="editForm" style="display: none;">
+    <input type="text" id="editName" placeholder="Name" required>
+    <input type="text" id="editUsername" placeholder="Username" required>
+    <input type="email" id="editEmail" placeholder="Email" required>
+    <button type="submit">Save</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
